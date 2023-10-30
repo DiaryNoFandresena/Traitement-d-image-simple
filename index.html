@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: auto;
+            background-color: #423e3ef0;
+            max-width: 1300px;
+            color: #363434fc;
+        }
+
+        .config {
+            font-size: 2.2em;
+
+        }
+
+        code {
+            color: rgb(7, 9, 92);
+        }
+
+        h1 {
+            width: 60vw;
+            margin: 3vh auto;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            color: #363434fc;
+            background-color: #eeeeee;
+            
+        }
+
+        .function {
+            margin: 20px;
+            border-radius: 6px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #eeeeee;
+        }
+
+        .function h3 {
+            background-color: #423e3ef0;
+            color: #fff;
+            padding: 5px;
+        }
+
+        .function p {
+            margin: 10px 0;
+        }
+
+        .single {
+            background-color: #d0bdbd;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOCUMENTATION DES FONCTIONS OPENCV</h1>
+    <div class="function">
+        <p>Le traitement d'images avec C++ et OpenCV est un domaine passionnant et vaste. OpenCV (Open Source Computer Vision Library) 
+            est une bibliothèque open source largement utilisée pour le traitement d'images, la vision par ordinateur et la vision par machine.</p>
+        <p>cette programme permet de traiter et d'améliorer une image ou de connaitre plus sur l'image.</p>
+        <div class="configSytem">
+            <h2 class="config">Configuration de la bibliothèque OpenCV C++</h2>
+            <h2>WINDOWS</h2>
+            <h4>Installation</h4>
+                <ol>
+                    <li>Téléchargez MinGW et OpenCV</li>
+                    <li>Installez MinGW dans <code>C:\mingw</code> et décompressez <code>opencv-4.8.0.zip</code></li>
+                    <li>Ajoutez à la variable environnement <code>Path: C:\mingw\mingw64\bin</code> et <code>C:\opencv\mybuild\bin</code></li>
+                    <li>Ajoutez les variables système: <code>OPENCV_DIR-C:\opencv\mybuild</code> et <code>OPENCV_HOME-C:\opencv</code></li>
+                </ol>
+            <h4>Compilation</h4>
+                <BLOCKQUOTE><code>g++ -Wall -o "%e" "%F" -Ic:\opencv\include -Lc:\opencv\mybuild\lib -lopencv</code></BLOCKQUOTE>
+            <h2>LINUX</h2>
+            <h4>Installation</h4>
+                <ol>
+                    <li>sudo apt update</li>
+                    <li>sudo apt upgrade</li>
+                    <li>sudo apt install libopencv-dev</li>
+                </ol>
+            <h4>Compilation</h4>
+                <BLOCKQUOTE><code>g++ -o main nomDuFichier.cpp $(pkg-config --cflags opencv4) $(pkg-config --libs opencv4)</code></BLOCKQUOTE>
+            <h4>Lancement</h4>
+                <BLOCKQUOTE><code>./main</code></BLOCKQUOTE>
+        </div>
+    </div>
+    <div class="function single">
+        <p>voici tout les fonctions utilisée dans cette programme pour vous familiariser</p>
+    </div>
+
+    <div class="function">
+        <h3>convertToGray</h3>
+        <p>Description : Cette fonction convertit une image couleur en une image en niveaux de gris.</p>
+        <p>Utilisation : <code>convertToGray(inputImage, outputImage);</code></p>
+        <p>Arguments :
+            <ul>
+                <li><code>inputImage</code> : L'image d'entrée en couleur que vous souhaitez convertir.</li>
+                <li><code>outputImage</code> : L'image résultante en niveaux de gris.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat grayImage;
+                convertToGray(inputImage, grayImage);
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>resizeImage</h3>
+        <p>Description : Cette fonction redimensionne une image à une largeur et une hauteur spécifiques.</p>
+        <p>Utilisation : <code>resizeImage(inputImage, outputImage, width, height);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image d'entrée que vous souhaitez redimensionner.</li>
+                <li><code>outputImage</code> : L'image résultante redimensionnée.</li>
+                <li><code> width</code> : Largeur de l'image de sortie.</li>
+                <li><code> height</code> : Hauteur de l'image de sortie.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat resizedImage;
+                resizeImage(inputImage, resizedImage, 640, 480);                
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>applyGaussianBlur</h3>
+        <p>Description : Cette fonction applique un flou gaussien à une image.</p>
+        <p>Utilisation : <code>applyGaussianBlur(inputImage, outputImage, kernelSize);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image d'entrée sur laquelle vous souhaitez appliquer le flou gaussien.</li>
+                <li><code>outputImage</code> : L'image résultante avec le flou gaussien.</li>
+                <li><code> kernelSize</code> : La taille du noyau de flou gaussien.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat blurredImage;
+                applyGaussianBlur(inputImage, blurredImage, 5);            
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>detectAndDrawContours</h3>
+        <p>Description : Cette fonction détecte les contours dans une image en niveaux de gris et les dessine sur une image en couleur.</p>
+        <p>Utilisation : <code>detectAndDrawContours(inputImage, outputImage);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image d'entrée que vous souhaitez détecter les contours.</li>
+                <li><code>outputImage</code> : L'image de sortie avec les contours dessinés.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat outputImage;
+                detectAndDrawContours(inputImage, outputImage);                
+            </pre>
+        </p>
+    </div>
+    
+    <div class="function">
+        <h3>NoirEtBlanc</h3>
+        <p>Description : Cette fonction convertit une image en couleur en une image en noir et blanc avec une seuil de binarisation.</p>
+        <p>Utilisation : <code>NoirEtBlanc(inputImage, outputImage);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image d'entrée en couleur que vous souhaitez convertir en noir et blanc.</li>
+                <li><code>outputImage</code> : L'image résultante en noir et blanc.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat bwImage;
+                NoirEtBlanc(inputImage, bwImage);               
+            </pre>
+        </p>
+    </div> 
+
+    <div class="function">
+        <h3>FloydSteinbergDithering</h3>
+        <p>Description :  Cette fonction applique la méthode de dithering de Floyd-Steinberg pour réduire une image en niveaux de gris à une image binaire (noir et blanc) tout en conservant les détails.</p>
+        <p>Utilisation : <code>FloydSteinbergDithering(inputImage, outputImage);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image d'entrée en niveaux de gris à dither.</li>
+                <li><code>outputImage</code> : L'image résultante en noir et blanc dithered.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("grayscale_image.jpg", IMREAD_GRAYSCALE);
+                Mat ditheredImage;
+                FloydSteinbergDithering(inputImage, ditheredImage);              
+            </pre>
+        </p>
+    </div>
+    
+    <div class="function">
+        <h3>Negatif</h3>
+        <p>Description :  Cette fonction génère le négatif d'une image, inversant les couleurs.</p>
+        <p>Utilisation : <code>Negatif(inputImage, outputImage);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image d'entrée dont vous souhaitez générer le négatif.</li>
+                <li><code>outputImage</code> :  L'image résultante en négatif.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat negativeImage;
+                Negatif(inputImage, negativeImage);              
+            </pre>
+        </p>
+    </div> 
+
+    <div class="function">
+        <h3>applyCustomFilter</h3>
+        <p>Description :  Cette fonction vous permet d'implémenter un filtre personnalisé sur une image. Dans l'exemple donné, un filtre de flou gaussien est appliqué.</p>
+        <p>Utilisation : <code>applyCustomFilter(inputImage, outputImage);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> :  L'image d'entrée sur laquelle vous souhaitez appliquer le filtre personnalisé.</li>
+                <li><code>outputImage</code> :  L'image résultante après application du filtre.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat filteredImage;
+                applyCustomFilter(inputImage, filteredImage);              
+            </pre>
+        </p>
+    </div> 
+
+    <div class="function">
+        <h3>applyMedianBlur</h3>
+        <p>Description : Cette fonction applique un filtre de flou médian à une image, utile pour réduire le bruit.</p>
+        <p>Utilisation : <code>applyMedianBlur(inputImage, outputImage, kernelSize);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image d'entrée sur laquelle vous souhaitez appliquer le filtre de flou médian.</li>
+                <li><code>outputImage</code> : L'image résultante après application du filtre.</li>
+                <li><code> kernelSize</code> : La taille du noyau du filtre médian (doit être impair).</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat blurredImage;
+                applyMedianBlur(inputImage, blurredImage, 5);            
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>applySobel</h3>
+        <p>Description :  Cette fonction applique le filtre de Sobel pour détecter les contours d'une image.</p>
+        <p>Utilisation : <code>applySobel(inputImage, outputImage);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> :  L'image d'entrée sur laquelle vous souhaitez appliquer le filtre de Sobel.</li>
+                <li><code>outputImage</code> :  L'image résultante avec les contours détectés.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat edgesImage;
+                applySobel(inputImage, edgesImage);              
+            </pre>
+        </p>
+    </div> 
+
+    <div class="function">
+        <h3>applyCanny</h3>
+        <p>Description : Cette fonction applique l'algorithme de détection de contours Canny à une image en niveaux de gris.</p>
+        <p>Utilisation : <code>applyCanny(inputImage, outputImage, threshold1, threshold2);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image d'entrée en niveaux de gris sur laquelle vous souhaitez appliquer Canny.</li>
+                <li><code>outputImage</code> : L'image résultante avec les contours détectés.</li>
+                <li><code> threshold1</code> : Les seuils pour la détection de contours. Les valeurs dépendent de votre image et du niveau de détail souhaité.</li>
+                <li><code> threshold2</code> : Les seuils pour la détection de contours. Les valeurs dépendent de votre image et du niveau de détail souhaité.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("grayscale_image.jpg", IMREAD_GRAYSCALE);
+                Mat edgesImage;
+                applyCanny(inputImage, edgesImage, 100, 200);                                
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>rotateImage</h3>
+        <p>Description : Cette fonction effectue une rotation sur une image.</p>
+        <p>Utilisation : <code>rotateImage(inputImage, outputImage, angle);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image que vous souhaitez faire pivoter.</li>
+                <li><code>outputImage</code> : L'image résultante après la rotation.</li>
+                <li><code> angle</code> : L'angle de rotation en degrés.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat rotatedImage;
+                rotateImage(inputImage, rotatedImage, 45.0);          
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>adjustBrightness</h3>
+        <p>Description : Cette fonction ajuste la luminosité d'une image.</p>
+        <p>Utilisation : <code>adjustBrightness(inputImage, outputImage, brightness);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image sur laquelle vous souhaitez ajuster la luminosité.</li>
+                <li><code>outputImage</code> : L'image résultante avec la luminosité ajustée.</li>
+                <li><code> angle</code> : La valeur d'ajustement de la luminosité (positive ou négative).</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat brightenedImage;
+                adjustBrightness(inputImage, brightenedImage, 30);         
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>adjustContrast</h3>
+        <p>Description : Cette fonction ajuste le contraste d'une image.</p>
+        <p>Utilisation : <code>adjustContrast(inputImage, outputImage, contrast);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image sur laquelle vous souhaitez ajuster le contraste.</li>
+                <li><code>outputImage</code> : L'image résultante avec le contraste ajusté.</li>
+                <li><code> angle</code> : La valeur d'ajustement du contraste (positive ou négative).</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat highContrastImage;
+                adjustContrast(inputImage, highContrastImage, 2.0);        
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>addVignette</h3>
+        <p>Description : Cette fonction ajoute un effet de vignette à une image, assombrissant les coins.</p>
+        <p>Utilisation : <code>addVignette(inputImage, outputImage, factor);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image à laquelle vous souhaitez ajouter une vignette.</li>
+                <li><code>outputImage</code> : L'image résultante avec l'effet de vignette.</li>
+                <li><code> factor</code> : Le facteur de l'effet de vignette (0.0 pour aucun, 1.0 pour maximal).</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat vignettedImage;
+                addVignette(inputImage, vignettedImage, 0.5);        
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>compressImage</h3>
+        <p>Description : Cette fonction compresse une image en utilisant le format JPEG.</p>
+        <p>Utilisation : <code>compressImage(inputImage, compressedImage, quality);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image que vous souhaitez compresser.</li>
+                <li><code>compressedImage</code> : Un vecteur où l'image compressée sera stockée.</li>
+                <li><code> quality</code> : La qualité de compression de l'image (de 0 à 100, 100 étant la meilleure qualité).</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                std::vector<uchar> compressedData;
+                compressImage(inputImage, compressedData, 90);       
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>deompressImage</h3>
+        <p>Description : Cette fonction décompresse une image au format JPEG.</p>
+        <p>Utilisation : <code>decompressImage(compressedImage, outputImage);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code>compressedImage</code> : Le vecteur contenant les données de l'image compressée au format JPEG.</li>
+                <li><code> outputImage</code> : L'image résultante décompressée.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                std::vector<uchar> compressedData = ...;  // Chargez les données depuis un fichier ou une source
+                Mat decompressedImage;
+                decompressImage(compressedData, decompressedImage);        
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>cropToSquare</h3>
+        <p>Description :  Cette fonction recadre une image en un carré en conservant la région centrale de l'image.</p>
+        <p>Utilisation : <code>cropToSquare(inputImage, outputImage);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> :  L'image que vous souhaitez recadrer en carré.</li>
+                <li><code>outputImage</code> : L'image résultante recadrée en carré.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("image.jpg");
+                Mat squaredImage;
+                cropToSquare(inputImage, squaredImage);            
+            </pre>
+        </p>
+    </div> 
+
+    <div class="function">
+        <h3>equalizeImageHistogram</h3>
+        <p>Description :  Cette fonction égalise l'histogramme d'une image en niveaux de gris, améliorant le contraste.</p>
+        <p>Utilisation : <code>equalizeImageHistogram(inputImage, outputImage);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image en niveaux de gris que vous souhaitez égaliser.</li>
+                <li><code>outputImage</code> : L'image résultante avec l'histogramme égalisé.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("grayscale_image.jpg", IMREAD_GRAYSCALE);
+                Mat equalizedImage;
+                equalizeImageHistogram(inputImage, equalizedImage);         
+            </pre>
+        </p>
+    </div>
+    
+    <div class="function">
+        <h3>calculateHistogram</h3>
+        <p>Description :  Cette fonction calcule l'histogramme d'une image en niveaux de gris.</p>
+        <p>Utilisation : <code>calculateHistogram(inputImage, histogram);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code> inputImage</code> : L'image pour laquelle vous souhaitez calculer l'histogramme.</li>
+                <li><code>histogram</code> : L'histogramme résultant, stocké dans une matrice.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat inputImage = imread("grayscale_image.jpg", IMREAD_GRAYSCALE);
+                Mat histogram;
+                calculateHistogram(inputImage, histogram);       
+            </pre>
+        </p>
+    </div>
+
+    <div class="function">
+        <h3>displayHistogram</h3>
+        <p>Description :  Cette fonction affiche un histogramme sous forme d'image.</p>
+        <p>Utilisation : <code>displayHistogram(histogram);</code></p>
+        <p>Arguments :
+            <ul> 
+                <li><code>histogram</code> : L'histogramme que vous souhaitez afficher sous forme d'image.</li>
+            </ul>
+        </p>
+        <p>Exemple :
+            <pre>
+                Mat histogram = ...;  // Remplacez par votre propre histogramme
+                displayHistogram(histogram);    
+            </pre>
+        </p>
+    </div>
+
+
+</body>
+</html>
